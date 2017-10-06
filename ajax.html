@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>image</title>
+
+</head>
+<body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script>
+    url = "ajax.php?name_beer=cuvée des trolls";
+
+  $.getJSON( url, function( data ) {
+    console.log(data);
+  var myLi = [];
+  $.each( data.data.result.items, function( key, val ) {
+    myLi.push( '<li id="' + key + '"><img src="' + this.media + '" width="100"> - ' + this.width + 'px/' + this.height + 'px</li>' );
+  });
+
+
+  $( "<ul/>", {
+    "class": "my-new-list",
+    html: myLi.join( "" )
+  }).appendTo( "body" );
+});
+
+    </script>
+</body>
+</html>

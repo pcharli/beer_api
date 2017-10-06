@@ -1,0 +1,20 @@
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteBase /beers_api/
+RewriteRule beer$ index.php [L]
+RewriteRule beer/$ index.php [L]
+RewriteRule start/([0-9]+)$ index.php?start=$1 [L]
+RewriteRule beer/start/([0-9]+)$ index.php?start=$1 [L]
+RewriteRule beer/insert$ new_beer.php [L]
+RewriteRule beer/([0-9]+)$ index.php?id_beers=$1 [L]
+RewriteRule category$ category.php [L]
+RewriteRule category/$ category.php [L]
+RewriteRule category/([0-9]+)$ category.php?id_categories=$1 [L]
+RewriteRule category/([0-9]+)/start/([0-9]+)$ category.php?id_categories=$1&start=$2 [L]
+RewriteRule style$ style.php [L]
+RewriteRule style/$ style.php [L]
+RewriteRule style/([0-9]+)$ style.php?id_styles=$1 [L]
+RewriteRule brewery$ brewery.php [L]
+RewriteRule brewery/$ brewery.php [L]
+RewriteRule brewery/([0-9]+)$ brewery.php?id_breweries=$1 [L]
+</IfModule>
