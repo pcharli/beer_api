@@ -5,6 +5,9 @@ require("header.php");
 switch($_SERVER['REQUEST_METHOD']) : 
 
     case "POST" : 
+    	if (isset($_GET['id_beers']) AND !isset($_POST['id_beers'])) :
+    		$_POST['id_beers'] = $_GET['id_beers'];
+    	endif; 
         $datas = $_POST;
         echo $sql = sprintf("INSERT INTO beers SET name_beer = '%s', description='%s', id_breweries = '%s', id_categories = '%s', id_styles = '%s', alcool = '%s', ibu = '%s', srm = '%s', upc = '%s', last_mod = '%s'",
         addslashes($datas['name_beer']),
@@ -26,7 +29,10 @@ switch($_SERVER['REQUEST_METHOD']) :
 
     case "PUT" : 
         parse_str(file_get_contents('php://input'), $datas);
-        //print_r($datas);    
+        //print_r($datas);  
+        if (isset($_GET['id_beers']) AND !isset($datas['id_beers'])) :
+    		$datas['id_beers'] = $_GET['id_beers'];
+    	endif;   
         echo $sql = sprintf("UPDATE beers SET name_beer = '%s', description='%s', id_breweries = '%s', id_categories = '%s', id_styles = '%s', alcool = '%s', ibu = '%s', srm = '%s', upc = '%s', last_mod = '%s' WHERE id_beers = %s",
         addslashes($datas['name_beer']),
         addslashes($datas['description']),
@@ -49,6 +55,9 @@ switch($_SERVER['REQUEST_METHOD']) :
     case "DELETE" :
         parse_str(file_get_contents('php://input'), $datas);
         //print_r($datas);
+        if (isset($_GET['id_beers']) AND !isset($datas['id_beers'])) :
+    		$datas['id_beers'] = $_GET['id_beers'];
+    	endif;
         $sql = $sql = sprintf("DELETE FROM beers WHERE id_beers = %s",$datas['id_beers']);
     $connect->query($sql);
     $the_id = $datas['id_beers'];
