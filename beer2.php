@@ -1,7 +1,7 @@
 <?php
 //print_r($_REQUEST);
 require("header.php");
-    $sql = sprintf("SELECT * FROM beers ORDER BY name_beer LIMIT 2370, 10");
+    $sql = sprintf("SELECT * FROM beers ORDER BY name_beer LIMIT 2570, 10");
 
 
 $requete = $connect->query($sql);
